@@ -4,8 +4,8 @@ This Packer configuration will generate Ubuntu images with Elasticsearch, Kibana
 
 The output of running Packer here would be two machine images, as below:
 
-* elasticsearch node image, containing latest Elasticsearch installed (latest version 7.x) and configured with best-practices.
-* kibana node image, based on the elasticsearch node image, and with Kibana (7.x, latest), nginx with basic proxy and authentication setip, and Kopf.
+* elasticsearch node image, containing latest Elasticsearch installed (latest version 5.x) and configured with best-practices.
+* kibana node image, based on the elasticsearch node image, and with Kibana (5.x, latest), nginx with basic proxy and authentication setip, and Kopf.
 
 ## On Amazon Web Services (AWS)
 
@@ -57,9 +57,6 @@ aws iam add-role-to-instance-profile  --instance-profile-name packer --role-name
 
 ```
 
-By default, AWS builder will pick a subnet from the default VPC for running the builder instance. It is required for that subnet to have Public IPs auto-assignment enabled. Otherwise, packer won't be able to make a SSH connection to the instance and will hang on `Waiting for SSH to become available...`  
-If you don't want to enable public IPs auto-assignment on your default VPC subnets, you can explicitly set the subnet by setting `vpc_id` and `subnet_id` keys in *.packer.json files `amazon-ebs` builder definitions.
-
 ## On Microsoft Azure
 
 Before running Packer for the first time you will need to do a one-time initial setup.
@@ -98,10 +95,8 @@ az account show --query "{ subscription_id: id }"
 Building the AMIs is done using the following commands:
 
 ```bash
-packer build -only=aws -var-file=variables.json elasticsearch7-node.packer.json
-packer build -only=aws -var-file=variables.json kibana7-node.packer.json
+packer build -only=amazon-ebs -var-file=variables.json elasticsearch6-node.packer.json
+packer build -only=amazon-ebs -var-file=variables.json kibana6-node.packer.json
 ```
 
-Replace the `-only` parameter to `azure` to build images for Azure instead of AWS.
-
-For creating the Kibana image in azure, make sure you update "azure_elasticsearch_image_name" in variables.json. You can see the value in the output for the creation of the Elasticsearch image.
+Replace the `-only` parameter to `azure-arm` to build images for Azure instead of AWS.
