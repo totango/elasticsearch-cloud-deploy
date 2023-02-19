@@ -16,16 +16,14 @@ else
 fi
 
 cd /usr/share/kibana/
-bin/kibana-plugin install x-pack || true
+# bin/kibana-plugin install x-pack || true
 chown kibana:kibana * -R
 
 # This needs to be here explicitly because of a long first-initialization time of Kibana
-systemctl daemon-reload
-systemctl enable kibana.service
-sudo service kibana start
 
-printf 'Waiting for Kibana to initialize...'
-until $(curl --output /dev/null --silent --head --fail http://localhost:5601); do
-    printf '.'
-    sleep 5
-done
+echo "Kibana daemon reload"
+sudo systemctl daemon-reload
+echo "Kibana enable service"
+sudo systemctl enable kibana.service
+echo "Kibana service start"
+# sudo service kibana start
