@@ -24,9 +24,7 @@
       "ssh_username": "ubuntu",
       "tags": {
         "ImageType": "elasticsearch6-packer-image"
-      },
-      "spot_price_auto_product": "Linux/UNIX (Amazon VPC)",
-      "spot_price": "auto"
+      }
     },
     {
       "type": "azure-arm",
@@ -60,6 +58,19 @@
     }
   ],
   "provisioners": [
+    {
+      "type": "file",
+      "source": "../assets/scripts",
+      "destination": "/tmp"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo mkdir -p /opt/cloud-deploy-scripts",
+        "sudo mv /tmp/scripts/* /opt/cloud-deploy-scripts",
+        "sudo chmod +x -R /opt/cloud-deploy-scripts"
+      ]
+    },
     {
       "type": "shell",
       "script": "update-machine.sh",
