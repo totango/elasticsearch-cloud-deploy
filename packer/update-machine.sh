@@ -10,7 +10,8 @@ sleep 100
 
 sudo apt-get update
 sudo -E apt-get upgrade -y
-sudo -E apt-get install -y software-properties-common git python-dev htop ntp jq vim nano apt-transport-https unzip nvme-cli
+sudo -E apt-get install -y software-properties-common git python-dev htop ntp jq vim nano apt-transport-https unzip
+sudo -E apt-get install -y nvme-cli
 
 if [[ $PACKER_BUILD_NAME == "aws" ]]; then
 	sudo -E apt-get install -y awscli
