@@ -35,7 +35,8 @@ echo 'Waiting for 30 seconds for the disk to become mountable...'
 sleep 30
 
 sudo mkdir -p $elasticsearch_data_dir
-export DEVICE_NAME=$(lsblk -ip | tail -n +2 | awk '{print $1 " " ($7? "MOUNTEDPART" : "") }' | sed ':a;N;$!ba;s/\n`/ /g' | grep -v MOUNTEDPART)
+ID="$(echo $UNATTACHED_VOLUME_ID | sed 's/vol-/vol/')"
+export DEVICE_NAME="/dev/disk/by-id/nvme-Amazon_Elastic_Block_Store_$ID"
 if sudo mount -o defaults -t ext4 $DEVICE_NAME $elasticsearch_data_dir; then
     echo 'Successfully mounted existing disk'
 else
