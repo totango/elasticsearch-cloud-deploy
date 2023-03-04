@@ -9,7 +9,6 @@ echo "Waiting 100 seconds for cloud-init to finish..."
 sleep 100
 
 sudo apt-get update
-sudo -E apt-get upgrade -y
 sudo -E apt-get install -y software-properties-common git python3-dev htop ntp jq vim nano apt-transport-https unzip awscli
 
 # Disable daily apt unattended updates.
