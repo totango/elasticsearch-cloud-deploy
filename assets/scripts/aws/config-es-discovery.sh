@@ -9,8 +9,12 @@ network.host: _ec2:privateIpv4_,localhost
 plugin.mandatory: discovery-ec2
 cloud.node.auto_attributes: true
 cluster.routing.allocation.awareness.attributes: aws_availability_zone
+
+# Note required for ES-6 Make this dynamic
+discovery.zen.minimum_master_nodes: 1
+
 discovery:
-    seed_providers: ec2
+    zen.hosts_provider: ec2
     ec2.groups: $security_groups
     ec2.host_type: private_ip
     ec2.tag.Cluster: $es_environment
