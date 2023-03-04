@@ -2,6 +2,7 @@
   "description": "Elasticsarch Image",
   "builders": [
     {
+    	"name": "aws",
       "type": "amazon-ebs",
       "ami_name": "elasticsearch6-{{isotime | clean_resource_name}}",
       "availability_zone": "{{user `aws_az`}}",
