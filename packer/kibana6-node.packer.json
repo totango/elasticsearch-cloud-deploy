@@ -2,6 +2,7 @@
   "description": "Kibana Image",
   "builders": [
     {
+    	"name": "aws",
       "type": "amazon-ebs",
 
       "ami_name": "kibana6-{{isotime | clean_resource_name}}",
