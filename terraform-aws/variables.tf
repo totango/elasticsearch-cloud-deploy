@@ -169,7 +169,7 @@ variable "DEV_MODE_scripts_s3_bucket" {
 
 variable "requires_bootstrapping" {
   description = "Overrides cluster bootstrap state"
-  default     = true
+  default     = false
 }
 
 variable "elasticsearch_packer_image" {
