@@ -8,12 +8,14 @@ echo "AV_ZONE: $AV_ZONE"
 
 while true; do
     INSTANCE_ROLE="$(aws ec2 describe-tags --region $aws_region --filters Name=resource-id,Values=$(ec2metadata --instance-id) | jq -r '.Tags[] | select(.Key == "Role") | .Value')"
+    echo "master,data,client" | grep $INSTANCE_ROLE
     if [ $? -eq 0 ]; then
         break
     fi
-    echo "INSTANCE_ROLE: $INSTANCE_ROLE"
     sleep 1
 done
+
+echo "Using INSTANCE_ROLE: $INSTANCE_ROLE"
 
 while true; do
     UNATTACHED_VOLUME_ID="$(aws ec2 describe-volumes --region $aws_region --filters Name=tag:ClusterName,Values=$es_cluster Name=tag:AutoAttachGroup,Values=$INSTANCE_ROLE Name=availability-zone,Values=$AV_ZONE | jq -r '.Volumes[] | select(.Attachments | length == 0) | .VolumeId' | shuf -n 1)"
