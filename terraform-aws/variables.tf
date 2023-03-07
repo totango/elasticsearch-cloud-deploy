@@ -49,7 +49,7 @@ variable "elasticsearch_volume_size" {
 }
 
 variable "volume_encryption" {
-  default = true
+  default = false
 }
 
 variable "elasticsearch_data_dir" {
@@ -112,7 +112,7 @@ variable "client_user" {
 variable "public_facing" {
   description = "Whether or not the created cluster should be accessible from the public internet"
   type        = bool
-  default     = true
+  default     = false
 }
 
 # the ability to add additional existing security groups. In our case
