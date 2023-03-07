@@ -80,7 +80,7 @@ resource "aws_lb_target_group" "esearch-p9200-tg" {
     path                = "/"
     port                = 9200
     interval            = 15
-    matcher             = "401"
+    matcher             = "200"
   }
 }
 
@@ -116,7 +116,7 @@ resource "aws_lb_target_group" "grafana-p3000-tg" {
     path                = "/"
     port                = 3000
     interval            = 15
-    matcher             = "302"
+    matcher             = "200"
   }
 }
 
@@ -134,7 +134,7 @@ resource "aws_lb_target_group" "cerebro-p9000-tg" {
     path                = "/"
     port                = 9000
     interval            = 15
-    matcher             = "303"
+    matcher             = "200"
   }
 }
 
