@@ -15,7 +15,6 @@
 cat <<EOF >>/etc/elasticsearch/elasticsearch.yml
 cluster.name: $es_cluster
 xpack.monitoring.enabled: $monitoring_enabled
-xpack.monitoring.collection.enabled: $monitoring_enabled
 path.data: $elasticsearch_data_dir
 path.logs: $elasticsearch_logs_dir
 xpack.security.enabled: $security_enabled
@@ -23,7 +22,8 @@ EOF
 
 # Configure log4j retention and level
 sudo sed -i "21 s,.*,appender.rolling.policies.size.size=${log_size}MB," /etc/elasticsearch/log4j2.properties
-sudo sed -i "33 s,.*,rootLogger.level = $log_level," /etc/elasticsearch/log4j2.properties
+sudo sed -i "22 s,.*,appender.rolling.policies.size.type=SizeBasedTriggeringPolicy," /etc/elasticsearch/log4j2.properties
+sudo sed -i "23 s,.*,rootLogger.level = $log_level," /etc/elasticsearch/log4j2.properties
 
 # If security enabled
 if [ "$security_enabled" == "true" ]; then
