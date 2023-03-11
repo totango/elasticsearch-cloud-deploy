@@ -174,12 +174,12 @@ variable "requires_bootstrapping" {
 
 variable "elasticsearch_packer_image" {
   description = "The name of the image family for elasticsearch"
-  default     = "elasticsearch6-packer-image"
+  default     = "elasticsearch5-packer-image"
 }
 
 variable "kibana_packer_image" {
   description = "The name of the image family for kibana"
-  default     = "kibana6-packer-image"
+  default     = "kibana5-packer-image"
 }
 
 variable "ec2_vpc_endpoint_id" {
