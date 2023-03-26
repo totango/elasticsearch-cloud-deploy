@@ -218,3 +218,9 @@ variable "protect_data_from_scale_in" {
    type = bool
    default = true
 }
+
+variable "use_instance_store" {
+  description = "Controls if we use instance store or EBS volume"
+  type        = bool
+  default     = false
+}
