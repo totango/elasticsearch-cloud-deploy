@@ -60,6 +60,7 @@ locals {
     bootstrap_node           = false
     log_level                = var.log_level
     log_size                 = var.log_size
+    use_instance_store       = var.use_instance_store
 
     ca_cert   = var.security_enabled ? join("", tls_self_signed_cert.ca[*].cert_pem) : ""
     node_cert = var.security_enabled ? join("", tls_locally_signed_cert.node[*].cert_pem) : ""

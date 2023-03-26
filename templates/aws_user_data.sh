@@ -8,6 +8,7 @@ if [ "${DEV_MODE_scripts_s3_bucket}" != "" ]; then
 fi
 
 export cloud_provider="${cloud_provider}"
+export use_instance_store="${use_instance_store}"
 export elasticsearch_data_dir="${elasticsearch_data_dir}"
 export elasticsearch_logs_dir="${elasticsearch_logs_dir}"
 export heap_size="${heap_size}"
