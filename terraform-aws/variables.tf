@@ -212,3 +212,9 @@ variable "log_level" {
   description = "log4j log level"
   default     = "WARN"
 }
+
+variable "use_instance_store" {
+  description = "Controls if we use instance store or EBS volume"
+  type        = bool
+  default     = true
+}

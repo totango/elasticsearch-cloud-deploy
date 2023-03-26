@@ -29,7 +29,8 @@ resource "aws_ebs_volume" "master" {
 }
 
 resource "aws_ebs_volume" "data" {
-  for_each = local.data_az_flattened
+
+  for_each = var.use_instance_store ? local.data_az_flattened : []
 
   availability_zone = jsondecode(each.value)["az"]
   size              = var.elasticsearch_volume_size
